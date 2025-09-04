@@ -17,7 +17,7 @@ fn main() {
 
     // change(&mut r3);
 
-    dangle();
+    // dangle();
 }
 
 fn calculate_length(s: &String) -> usize {
@@ -30,9 +30,9 @@ fn change(s: &mut String) {
     s.push_str(", world!")
 }
 
-fn dangle() -> &String {
-    let s = String::from("hello");
-    &s
-    // sをそのまま返せばスコープを抜けても所有権がムーブされるだけなので問題なくなる
-    // sの参照を返そうとすると実体のsはスコープを抜けると解放されてしまい無効な参照となる
-}
+// fn dangle() -> &String {
+//     let s = String::from("hello");
+//     &s
+//     // sをそのまま返せばスコープを抜けても所有権がムーブされるだけなので問題なくなる
+//     // sの参照を返そうとすると実体のsはスコープを抜けると解放されてしまい無効な参照となる
+// }

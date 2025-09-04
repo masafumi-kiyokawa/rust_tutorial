@@ -163,7 +163,9 @@ fn hashmap() {
     }
     println!("{:?}", map);
 
-    training1();
+    // training1();
+
+    training2();
 }
 
 use std::io;
@@ -219,5 +221,42 @@ fn training1() {
             mode.sort();
             println!("mode: {:?}", mode);
         };
+    }
+}
+
+fn training2() {
+    loop {
+        println!("Enter some english word!");
+
+        let mut line = String::new();
+        io::stdin()
+            .read_line(&mut line)
+            .expect("Failed to read line");
+
+        let vowel = vec!['a', 'i', 'u', 'e', 'o'];
+        let mut pig_latin = String::new();
+        let line = line.lines().collect::<String>();
+        let mut chars = line.as_str().chars();
+        let first = match chars.next() {
+            Some(char) => char,
+            None => panic!("invalid string")
+        };
+        if vowel.contains(&first) {
+            pig_latin = format!("{}-hay", line);
+        } else {
+            pig_latin = format!("{}-{}ay", chars.as_str(), first);
+        }
+        println!("{}", pig_latin);
+    }
+}
+
+fn training3() {
+    loop {
+        println!("Enter a operation!");
+
+        let mut line = String::new();
+        io::stdin()
+            .read_line(&mut line)
+            .expect("Failed to read line");
     }
 }
