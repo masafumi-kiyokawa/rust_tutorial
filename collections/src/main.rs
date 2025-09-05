@@ -165,7 +165,8 @@ fn hashmap() {
 
     // training1();
 
-    training2();
+    // training2();
+    training3();
 }
 
 use std::io;
@@ -239,7 +240,7 @@ fn training2() {
         let mut chars = line.as_str().chars();
         let first = match chars.next() {
             Some(char) => char,
-            None => panic!("invalid string")
+            None => panic!("invalid string"),
         };
         if vowel.contains(&first) {
             pig_latin = format!("{}-hay", line);
@@ -251,6 +252,7 @@ fn training2() {
 }
 
 fn training3() {
+    let mut map = HashMap::<String, Vec<String>>::new();
     loop {
         println!("Enter a operation!");
 
@@ -258,5 +260,19 @@ fn training3() {
         io::stdin()
             .read_line(&mut line)
             .expect("Failed to read line");
+
+        let words: Vec<&str> = line.split_whitespace().collect();
+        if words.len() == 4 && words[0] == "Add" && words[2] == "to" {
+            let employee = words[1].to_string();
+            let department = words[3].to_string();
+            map.entry(department).or_insert(Vec::new()).push(employee);
+        }
+        let mut vec: Vec<(&String, &Vec<String>)> = map.iter().collect();
+        vec.sort_by(|a, b| a.0.cmp(&b.0));
+        let mut all_employees: Vec<&String> = map.values().flatten().collect();
+        all_employees.sort();
+
+        println!("{:?}", vec);
+        println!("{:?}", all_employees);
     }
 }
